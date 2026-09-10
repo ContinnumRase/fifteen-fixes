@@ -513,7 +513,6 @@ body.host .hint{display:none}
           </div>
           <div class="dist" id="rvDist"></div>
           <p class="fact" id="rvFact"></p>
-          <div class="credit" id="rvCredit"></div>
           <button id="next" class="btn" hidden>Next fix</button>
         </div>
       </div>
@@ -537,11 +536,6 @@ body.host .hint{display:none}
   <h2 style="font-family:var(--disp);font-weight:700;font-size:25px;text-transform:uppercase;margin-top:28px">Standings</h2>
   <ol class="ranks" id="finalRanks" style="margin-top:9px"></ol>
   <div style="margin-top:24px"><button id="restart" class="btn btn-ghost" hidden>Run another game</button></div>
-  <section class="credits">
-    <h2>Photograph credits</h2>
-    <p>All photographs from Wikimedia Commons, under their respective licences.</p>
-    <ul id="creditList"></ul>
-  </section>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -893,7 +887,6 @@ function showReveal(r){
     $("rvDist").textContent="No pin placed.";
   }
   $("rvFact").textContent=r.fact;
-  $("rvCredit").textContent="Photo: "+r.by+" — "+r.lic+", via Wikimedia Commons";
 }
 
 function renderFinal(){
@@ -901,7 +894,6 @@ function renderFinal(){
   const list=sortedPlayers();
   $("finalRanks").innerHTML=ranksHtml(list);
   $("restart").hidden=!isHost;
-  $("creditList").innerHTML=ROUNDS.map(r=>"<li>"+esc(r.name)+" — "+esc(r.by)+", "+esc(r.lic)+"</li>").join("");
   if(isHost){
     $("finalLabel").textContent="Winner";
     $("fnScore").textContent=list.length?list[0].name:"—";
